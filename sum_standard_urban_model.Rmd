@@ -1,0 +1,48 @@
+---
+title: Analysis of Standard Urban Model (SUM)
+author: Derek Ding 
+date: "`r Sys.Date()`" 
+output:
+  html_document:
+    df_print: paged
+    code_folding: show
+---
+
+# SUM Analysis for UK Cities
+
+## 0. Project bjective:
+This project aims to analyze the applicability of SUM to certain UK cities with GIS
+data, socio-economic data, travel demand/behaviour data etc.
+
+Other contextual data: 
+- [Consumer Data Research Centre (CDRC) in the United Kingdom](maps.cdrc.ac.uk/)
+- [Commute Data](www.commute.datashine.org.uk/)
+- [Interactive maps and visualizations of various types of data for the United Kingdom](www.datashine.org.uk/) 
+- [Interactive maps and visualizations of various types of data for the United KingdomScotland](www.scotland.datashine.org.uk)
+- [Carbon Emission Data](www.carbon.place)
+- [Open Street Map](www.openstreetmap.org) 
+- [England-wide data: ](https://www.centreforcities.org/data/)
+
+- Read in global [gender inequality](https://hdr.undp.org/data-center/documentation-and-downloads) data
+
+## 1. Load libraries and Import Data
+
+In this assignment we will use the following libraries:
+
+### 1.1 Libraries
+```{r echo= TRUE, error=TRUE}
+library(sf)
+library(tidyverse)
+# library(dplyr)
+library(shiny)
+library(tmap)
+library(tmaptools)
+library(readxl)
+library(sf)
+library(here)
+library(leaflet)
+library(raster)
+library(dplyr)
+library(terra)
+library(countrycode)
+```
