@@ -45,13 +45,10 @@ library(raster)
 library(dplyr)
 library(terra)
 library(countrycode)
-```
-
-
-```{r echo= TRUE, error=TRUE}
-
 glasgow_rent_v_dist <- read.csv("D:/OneDrive - University College London/T1/CASA0001/0. assessments/Assignment 1/data/dataglasgow_rent_dist2.csv")
 ```
+
+
 
 
 
@@ -86,7 +83,34 @@ glg.flats <- glg.flats %>%
 ```
 
 ```{r echo= TRUE, error=TRUE}
-
+ggplot(glasgow_rent_v_dist, 
+       aes(x = distance_to_town_centre, 
+           y = rent, 
+           color = Type,
+           shape = Type)) +
+  #geom_smooth(method = "loess")+
+  #geom_smooth(method = "glm")+
+  ylim(0, 4000)+
+  #geom_jitter(height = 0.05)+
+  #binomial_smooth()+
+  #geom_smooth(method=lm, se=FALSE, fullrange=TRUE) +
+  geom_point() +
+  labs(x="Distance to city centre (KM)", 
+       y = "Rent",
+       fill = "Model") +
+  scale_color_manual(labels = c("Flat", "House", "Parking"), values = c("blue", "red", "green")) +
+  ggtitle("Distance and Rent Relation for Flats in Glasgow") +
+  theme(plot.title = element_text(lineheight=3,
+                                   hjust = 0.5, # Plot title in the middle
+                                   face="bold", # bold
+                                   color="black",size=16) # title
+         )#+
+ # theme(legend.position="none")
+  #theme( legend.position = "right", 
+        # legend.background = element_rect(fill="white",
+                               #   size=0.3, linetype="solid", 
+                                 # colour ="grey"))
+ggsave("D:/OneDrive - University College London/T1/CASA0001/0. assessments/Assignment 1/data/r_all_scatter.png")
 ```
 
 
@@ -98,8 +122,9 @@ ggplot(glg.flats,
            y = rent, 
            color = Bed_type,
            shape = Bed_type)) +
-  geom_smooth(method = "glm")+
   #geom_smooth(method = "loess")+
+  #geom_smooth(method = "glm")+
+  ylim(0, 4000)+
   #geom_jitter(height = 0.05)+
   #binomial_smooth()+
   #geom_smooth(method=lm, se=FALSE, fullrange=TRUE) +
@@ -114,9 +139,9 @@ ggplot(glg.flats,
                                    color="black",size=16) # title
          )+
   theme( legend.position = "right", 
-         legend.background = element_rect(fill="lightyellow",
+         legend.background = element_rect(fill="white",
                                   size=0.3, linetype="solid", 
-                                  colour ="black"))
+                                  colour ="grey"))
 ```
 
 
@@ -151,6 +176,7 @@ ggplot(glg.houses,
   #geom_smooth(method=lm, se=FALSE, fullrange=TRUE) +
   #geom_smooth(method = "glm")+
   geom_smooth(method = "loess")+
+  ylim(0, 6100)+
   geom_point() +
   labs(x="Distance to city centre (KM)", 
        y = "Rent",
@@ -162,9 +188,9 @@ ggplot(glg.houses,
                                    color="black",size=16) # title
          )+
   theme( legend.position = "right", 
-         legend.background = element_rect(fill="lightyellow",
+         legend.background = element_rect(fill="white",
                                   size=0.3, linetype="solid", 
-                                  colour ="black"))
+                                  colour ="grey"))
 ```
 
 
@@ -240,6 +266,10 @@ ggplot(glg.houses,
 ```
 
 
+```{r echo= TRUE, error=TRUE}
+
+#glasgow_rent_v_dist <- read.csv("D:/OneDrive - University College London/T1/CASA0001/0. assessments/Assignment 1/data/dataglasgow_rent_dist2.csv")
+```
 
 
 
