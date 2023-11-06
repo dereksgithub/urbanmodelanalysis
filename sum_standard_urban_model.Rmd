@@ -18,7 +18,7 @@ Other contextual data:
 - [Consumer Data Research Centre (CDRC) in the United Kingdom](maps.cdrc.ac.uk/)
 - [Commute Data](www.commute.datashine.org.uk/)
 - [Interactive maps and visualizations of various types of data for the United Kingdom](www.datashine.org.uk/) 
-- [Interactive maps and visualizations of various types of data for the United KingdomScotland](www.scotland.datashine.org.uk)
+- [Interactive maps and visualizations of various types of data for the United Kingdom Scotland](www.scotland.datashine.org.uk)
 - [Carbon Emission Data](www.carbon.place)
 - [Open Street Map](www.openstreetmap.org) 
 - [England-wide data: ](https://www.centreforcities.org/data/)
@@ -46,3 +46,240 @@ library(dplyr)
 library(terra)
 library(countrycode)
 ```
+
+
+```{r echo= TRUE, error=TRUE}
+
+glasgow_rent_v_dist <- read.csv("D:/OneDrive - University College London/T1/CASA0001/0. assessments/Assignment 1/data/dataglasgow_rent_dist2.csv")
+```
+
+
+
+```{r echo= TRUE, error=TRUE}
+glasgow_rent_v_dist
+```
+2 Beds Flats:
+
+```{r echo= TRUE, error=TRUE}
+glg.flats <- glasgow_rent_v_dist[glasgow_rent_v_dist$Type == 'F',]
+glg.houses <- glasgow_rent_v_dist[glasgow_rent_v_dist$Type == 'H',]
+
+#glg.flats
+#glg.houses
+```
+
+```{r echo= TRUE, error=TRUE}
+library(ggplot2)
+```
+Change the room number, as it is the integer now, the ggplot function does not 
+take that as input
+```{r echo= TRUE, error=TRUE}
+glg.flats <- glg.flats %>%
+  mutate(Bed_type = case_when(
+    Beds == 1 ~ "1 bedrooms",
+    Beds == 2 ~ "2 bedrooms",
+    Beds == 3 ~ "3 bedrooms",
+    Beds == 4 ~ "4 bedrooms",
+    Beds == 5 ~ "5 bedrooms",
+    Beds == 6 ~ "6 bedrooms"
+    ))
+```
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+Plot the flats
+```{r echo= TRUE, error=TRUE}
+ggplot(glg.flats, 
+       aes(x = distance_to_town_centre, 
+           y = rent, 
+           color = Bed_type,
+           shape = Bed_type)) +
+  geom_smooth(method = "glm")+
+  #geom_smooth(method = "loess")+
+  #geom_jitter(height = 0.05)+
+  #binomial_smooth()+
+  #geom_smooth(method=lm, se=FALSE, fullrange=TRUE) +
+  geom_point() +
+  labs(x="Distance to city centre (KM)", 
+       y = "Rent",
+       fill = "Model") +
+  ggtitle("Distance and Rent Relation for Flats in Glasgow") +
+  theme(plot.title = element_text(lineheight=3,
+                                   hjust = 0.5, # Plot title in the middle
+                                   face="bold", # bold
+                                   color="black",size=16) # title
+         )+
+  theme( legend.position = "right", 
+         legend.background = element_rect(fill="lightyellow",
+                                  size=0.3, linetype="solid", 
+                                  colour ="black"))
+```
+
+
+
+Now do the same for the houses:
+
+
+```{r echo= TRUE, error=TRUE}
+glg.houses <- glg.houses %>%
+  mutate(Bed_type = case_when(
+    Beds == 1 ~ "1 bedrooms",
+    Beds == 2 ~ "2 bedrooms",
+    Beds == 3 ~ "3 bedrooms",
+    Beds == 4 ~ "4 bedrooms",
+    Beds == 5 ~ "5 bedrooms",
+    Beds == 6 ~ "6+ bedrooms",
+    Beds == 10 ~ "6+ bedrooms",
+    Beds == 8 ~ "6+ bedrooms",
+    Beds == 7 ~ "6+ bedrooms",
+    Beds == 9 ~ "6+ bedrooms"
+    ))
+```
+
+
+
+```{r echo= TRUE, error=TRUE}
+ggplot(glg.houses, 
+       aes(x = distance_to_town_centre, 
+           y = rent, 
+           color = Bed_type,
+           shape = Bed_type)) +
+  #geom_smooth(method=lm, se=FALSE, fullrange=TRUE) +
+  #geom_smooth(method = "glm")+
+  geom_smooth(method = "loess")+
+  geom_point() +
+  labs(x="Distance to city centre (KM)", 
+       y = "Rent",
+       fill = "Model") +
+  ggtitle("Distance and Rent Relation for Houses in Glasgow") +
+  theme(plot.title = element_text(lineheight=3,
+                                   hjust = 0.5, # Plot title in the middle
+                                   face="bold", # bold
+                                   color="black",size=16) # title
+         )+
+  theme( legend.position = "right", 
+         legend.background = element_rect(fill="lightyellow",
+                                  size=0.3, linetype="solid", 
+                                  colour ="black"))
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+```{r echo= TRUE, error=TRUE}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
